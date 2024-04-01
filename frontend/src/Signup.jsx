@@ -59,7 +59,7 @@ function Signup() {
         axios.post('http://localhost:8081/Sign', values)
             .then(res => {
                 console.log("Register Successful");
-                navigate("/"); // Redirect to login page
+                navigate("/Login"); // Redirect to login page
             })
             .catch(err => {
                 if (err.response && err.response.data.error === "already have an account") {
@@ -118,9 +118,9 @@ function Signup() {
                     </div>
                     <div className="btn_sign">
                         <button className='button_sign'>Signup</button>
-                            <Link to="/" style={{ textDecoration: 'none' }}>
+                            <Link to="/Login" style={{ textDecoration: 'none' }}>
                                 <button className='button_sign1'>
-                                    <span>back</span>
+                                    <span>Login</span>
                                 </button>
                             </Link>
                     </div>
