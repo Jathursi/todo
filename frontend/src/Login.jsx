@@ -67,7 +67,7 @@ function Login() {
                     </div>
                     <div className="btn_sign">
                         <button className='button_sign'>Login</button>
-                            <Link to="/Signup" style={{ textDecoration: 'none' }}>
+                            <Link to="/" style={{ textDecoration: 'none' }}>
                                 <button className='button_sign1'>
                                     <span>Signup</span>
                                 </button>
