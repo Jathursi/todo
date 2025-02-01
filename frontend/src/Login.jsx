@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './Login.css';
-import {FaEnvelope, FaLock } from 'react-icons/fa'; 
+import {FaEnvelope,  FaLock } from 'react-icons/fa'; 
 import axios from 'axios';
 import {Link,  useNavigate } from 'react-router-dom';
 
@@ -67,7 +67,7 @@ function Login() {
                     </div>
                     <div className="btn_sign">
                         <button className='button_sign'>Login</button>
-                            <Link to="/Signup" style={{ textDecoration: 'none' }}>
+                            <Link to="/" style={{ textDecoration: 'none' }}>
                                 <button className='button_sign1'>
                                     <span>Signup</span>
                                 </button>

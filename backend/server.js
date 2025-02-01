@@ -1,17 +1,53 @@
 
+// import express from 'express';
+// import mysql from 'mysql';
+// import cors from 'cors';
+// import cookieParser from 'cookie-parser';
+// import session from 'express-session';
+// import jwt from 'jsonwebtoken'
+// const app = express();
+
+// app.use(cors({
+//     origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true // Enable credentials (cookies, authorization headers, etc.)
+// }));
+
+// app.use(express.json());
+// app.use(cookieParser());
+// app.use(session({
+//     secret: 'secret',
+//     saveUninitialized: false,
+//     resave: false,
+//     cookie: {
+//         secure: false,
+//         maxAge: 1000 * 60 * 60 * 24
+//     }
+// }));
+// const db = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "",
+//     database: "Todo"
+// });
 import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables
+
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
-    credentials: true // Enable credentials (cookies, authorization headers, etc.)
-  }));
+    origin: ['https://jathursi.github.io'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({
@@ -19,16 +55,26 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        secure: false,
+        secure: false, // Change to true if using HTTPS
         maxAge: 1000 * 60 * 60 * 24
     }
 }));
+
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "Todo"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
+
+db.connect(err => {
+    if (err) {
+        console.error("Database connection error:", err);
+    } else {
+        console.log("Connected to MySQL database.");
+    }
+});
+
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token) {
