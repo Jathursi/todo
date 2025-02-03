@@ -56,7 +56,7 @@ function Signup() {
             return;
         }
         // If no password error, proceed with registration
-        axios.post('https://jathursi.github.io/Sign', values)
+        axios.post('https://backend-nine-psi-60.vercel.app/Sign', values)
             .then(res => {
                 console.log("Register Successful");
                 navigate("/Login"); // Redirect to login page
