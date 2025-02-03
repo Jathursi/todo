@@ -56,7 +56,7 @@ function Signup() {
             return;
         }
         // If no password error, proceed with registration
-        axios.post('http://localhost:8081/Sign', values)
+        axios.post('https://jathursi.github.io/Sign', values)
             .then(res => {
                 console.log("Register Successful");
                 navigate("/Login"); // Redirect to login page
