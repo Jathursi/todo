@@ -31,7 +31,7 @@ function Home() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = { ...values, userID }; // Include name in form data
-        axios.post('http://localhost:8081/list', formData)
+        axios.post('https://backend-nine-psi-60.vercel.app/list', formData)
             .then(res => {
                 console.log("added");
                 setData([...data, { ...formData, ID: res.data.insertId }]); // Update state with new data
@@ -42,7 +42,7 @@ function Home() {
             });
     };
     useEffect(() => {
-        axios.get('http://localhost:8081/list', { params: { userID: userID } })
+        axios.get('https://backend-nine-psi-60.vercel.app/list', { params: { userID: userID } })
             .then(res => {
                 setData(res.data);
             })
@@ -51,7 +51,7 @@ function Home() {
             });
     }, [userID]);
     useEffect(() => {
-        axios.get('http://localhost:8081', { withCredentials: true })
+        axios.get('https://backend-nine-psi-60.vercel.app', { withCredentials: true })
             .then(res => {
                 console.log(res.data);
                 if (res.data.Status === "Success") {
@@ -71,7 +71,7 @@ function Home() {
             });
     }, []);
     const handleDelete = (id) => {
-        axios.delete('http://localhost:8081/delete/' + id)
+        axios.delete('https://backend-nine-psi-60.vercel.app/delete/' + id)
             .then(() => {
                 setData(data.filter(item => item.ID !== id));
                 
@@ -89,7 +89,7 @@ function Home() {
         toggleEditForm();
     };
     const handleUpdate = () => {
-        axios.put(`http://localhost:8081/update/${editTaskData.ID}`, values, {
+        axios.put(`https://backend-nine-psi-60.vercel.app/update/${editTaskData.ID}`, values, {
         headers: {
             'Content-Type': 'application/json' // Set Content-Type header
         }
@@ -113,7 +113,7 @@ function Home() {
         const newCompletionStatus = list.complete === 'completed' ? 'not completed' : 'completed';
     
         // Send the request to update the completion status
-        axios.put(`http://localhost:8081/updateComplete/${id}`, { complete: newCompletionStatus })
+        axios.put(`https://backend-nine-psi-60.vercel.app/updateComplete/${id}`, { complete: newCompletionStatus })
             .then(res => {
                 console.log("Task completion status updated");
     
